@@ -1,0 +1,683 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>[YT] Prompts DB (database only)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1ba8849d-03a7-8191-a813-ee25e5fd6387" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/shield_gray.svg"/></div><h1 class="page-title">[YT] Prompts DB (database only)</h1><p class="page-description"></p></header><div class="page-body"><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Purpose</th><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesSelect"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM7.62402 10.6348C7.79492 10.915 8.20508 10.9287 8.37598 10.6348L10.666 6.73145C10.8574 6.41016 10.7002 6.04102 10.3652 6.04102H5.62793C5.29297 6.04102 5.14941 6.43066 5.32031 6.73145L7.62402 10.6348Z"></path></svg></span>Type</th><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesSelect"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM7.62402 10.6348C7.79492 10.915 8.20508 10.9287 8.37598 10.6348L10.666 6.73145C10.8574 6.41016 10.7002 6.04102 10.3652 6.04102H5.62793C5.29297 6.04102 5.14941 6.43066 5.32031 6.73145L7.62402 10.6348Z"></path></svg></span>Use Case</th><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesSelect"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM7.62402 10.6348C7.79492 10.915 8.20508 10.9287 8.37598 10.6348L10.666 6.73145C10.8574 6.41016 10.7002 6.04102 10.3652 6.04102H5.62793C5.29297 6.04102 5.14941 6.43066 5.32031 6.73145L7.62402 10.6348Z"></path></svg></span>Output Format</th><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesSelect"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM7.62402 10.6348C7.79492 10.915 8.20508 10.9287 8.37598 10.6348L10.666 6.73145C10.8574 6.41016 10.7002 6.04102 10.3652 6.04102H5.62793C5.29297 6.04102 5.14941 6.43066 5.32031 6.73145L7.62402 10.6348Z"></path></svg></span>App</th><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesFile"><path d="M12.5938 8.44043L7.54883 13.4854C6.26367 14.7773 4.54102 14.6475 3.44043 13.54C2.32617 12.4326 2.20312 10.7168 3.49512 9.4248L10.3926 2.52734C11.1445 1.77539 12.2725 1.63867 13.0039 2.37695C13.7422 3.11523 13.6055 4.22949 12.8535 4.98828L6.08594 11.7627C5.77832 12.0703 5.41602 11.9814 5.2041 11.7764C4.99902 11.5576 4.91016 11.2021 5.21777 10.8877L9.93457 6.1709C10.1738 5.93164 10.1875 5.58301 9.96191 5.35059C9.72949 5.13184 9.38086 5.13867 9.1416 5.37793L4.39746 10.1152C3.67285 10.8535 3.7002 11.9746 4.34961 12.624C5.05371 13.3281 6.12012 13.3145 6.8584 12.5762L13.6602 5.77441C14.9795 4.45508 14.9316 2.71875 13.7764 1.55664C12.6416 0.428711 10.8779 0.34668 9.55176 1.66602L2.61328 8.61816C0.883789 10.3477 1 12.8291 2.57227 14.4014C4.14453 15.9668 6.63281 16.0898 8.3623 14.3672L13.4414 9.28809C13.6738 9.0625 13.667 8.64551 13.4346 8.41992C13.209 8.18066 12.833 8.21484 12.5938 8.44043Z"></path></svg></span>Example Image Output</th><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesCreatedAt"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM4.54102 8.91211H7.99316C8.30078 8.91211 8.54004 8.67285 8.54004 8.37207V3.8877C8.54004 3.58691 8.30078 3.34766 7.99316 3.34766C7.69238 3.34766 7.45312 3.58691 7.45312 3.8877V7.83203H4.54102C4.2334 7.83203 4.00098 8.06445 4.00098 8.37207C4.00098 8.67285 4.2334 8.91211 4.54102 8.91211Z"></path></svg></span>Last edited time</th><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesCreatedAt"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM4.54102 8.91211H7.99316C8.30078 8.91211 8.54004 8.67285 8.54004 8.37207V3.8877C8.54004 3.58691 8.30078 3.34766 7.99316 3.34766C7.69238 3.34766 7.45312 3.58691 7.45312 3.8877V7.83203H4.54102C4.2334 7.83203 4.00098 8.06445 4.00098 8.37207C4.00098 8.67285 4.2334 8.91211 4.54102 8.91211Z"></path></svg></span>Created time</th></tr></thead><tbody><tr id="2208849d-03a7-8006-8604-f735bb94a51a"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/10X%202208849d03a780068604f735bb94a51a.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>10X</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Metaprompt</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-yellow">Generate Ideas</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 28, 2025 7:22 PM</time></td><td class="cell-bL[r"><time>@June 28, 2025 7:21 PM</time></td></tr><tr id="21e8849d-03a7-8065-ad21-c1950348f1c1"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Meta-Prompt%20Generator%20for%20News-R%20Application%20Devel%2021e8849d03a78065ad21c1950348f1c1.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Meta-Prompt Generator for News-R Application Development</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Metaprompt</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-green">Data Analysis</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 26, 2025 7:57 PM</time></td><td class="cell-bL[r"><time>@June 26, 2025 7:57 PM</time></td></tr><tr id="21e8849d-03a7-8068-bf64-ddf687bf5d1f"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Improve%20Code%20Metaprompt%2021e8849d03a78068bf64ddf687bf5d1f.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Improve Code Metaprompt</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Metaprompt</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-green">Data Analysis</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 25, 2025 8:05 PM</time></td><td class="cell-bL[r"><time>@June 25, 2025 8:05 PM</time></td></tr><tr id="2198849d-03a7-80bd-b1ef-f5c144409e56"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Script-Less%20GPT%202198849d03a780bdb1eff5c144409e56.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Script-Less GPT</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Metaprompt</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-purple">Business Operations</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 21, 2025 5:35 PM</time></td><td class="cell-bL[r"><time>@June 21, 2025 5:32 PM</time></td></tr><tr id="2198849d-03a7-80ea-8d5a-eea84780a2d0"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Jailbreak%20PromptMaker%202198849d03a780ea8d5aeea84780a2d0.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Jailbreak PromptMaker</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Metaprompt</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-green">Data Analysis</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-purple">Gemini</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 22, 2025 3:31 PM</time></td><td class="cell-bL[r"><time>@June 21, 2025 1:46 PM</time></td></tr><tr id="2188849d-03a7-8030-8c12-cdb9a2688ffc"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Taylin%20LongForm%20Hook%20Process%202188849d03a780308c12cdb9a2688ffc.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Taylin LongForm Hook Process</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Metaprompt</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-blue">Copywriting</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 19, 2025 8:39 PM</time></td><td class="cell-bL[r"><time>@June 19, 2025 8:19 PM</time></td></tr><tr id="2158849d-03a7-80ab-ae66-eaa99cdf3ce4"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Hook%20Multiplier%202158849d03a780abae66eaa99cdf3ce4.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Hook Multiplier</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Metaprompt</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-yellow">Generate Ideas</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 17, 2025 8:52 PM</time></td><td class="cell-bL[r"><time>@June 17, 2025 3:13 PM</time></td></tr><tr id="2158849d-03a7-8020-a05c-f5134a327f64"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Tweet%20Multiplier%202158849d03a78020a05cf5134a327f64.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Tweet Multiplier</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Metaprompt</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-yellow">Generate Ideas</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 17, 2025 8:52 PM</time></td><td class="cell-bL[r"><time>@June 17, 2025 2:46 PM</time></td></tr><tr id="21a8849d-03a7-8038-b66c-c19f2023cf10"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Self-Ask%20Socratic%20Prompting%2021a8849d03a78038b66cc19f2023cf10.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Self-Ask Socratic Prompting</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-default">Captured</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-yellow">Generate Ideas</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 22, 2025 10:19 AM</time></td><td class="cell-bL[r"><time>@June 22, 2025 10:18 AM</time></td></tr><tr id="2168849d-03a7-8023-afea-f702345843c8"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/AI%20Presentations%20(Gamma)%202168849d03a78023afeaf702345843c8.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>AI Presentations (Gamma)</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-default">Captured</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-purple">Business Operations</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-purple">Image</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 17, 2025 8:53 PM</time></td><td class="cell-bL[r"><time>@June 17, 2025 8:53 PM</time></td></tr><tr id="2158849d-03a7-80ce-afad-f92a5246292a"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Search%20better%20without%20Google%202158849d03a780ceafadf92a5246292a.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Search better without Google</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-default">Captured</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-green">Data Analysis</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 17, 2025 3:48 PM</time></td><td class="cell-bL[r"><time>@June 17, 2025 3:47 PM</time></td></tr><tr id="2138849d-03a7-80d9-9dd3-f0e117125e72"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/LLM%20Battle%202138849d03a780d99dd3f0e117125e72.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>LLM Battle</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-default">Captured</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-yellow">Generate Ideas</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-yellow">Claude</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 15, 2025 4:08 PM</time></td><td class="cell-bL[r"><time>@June 15, 2025 4:04 PM</time></td></tr><tr id="20b8849d-03a7-804d-a8d2-f04cf7bc8ad3"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Google&#x27;s%20AI%20Mode%20query%20decomposer%2020b8849d03a7804da8d2f04cf7bc8ad3.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Google&#x27;s AI Mode query decomposer</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-default">Captured</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-yellow">Generate Ideas</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-gray">NotebookLM</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 10, 2025 6:49 PM</time></td><td class="cell-bL[r"><time>@June 7, 2025 7:56 PM</time></td></tr><tr id="2048849d-03a7-8092-9526-f2c14a684009"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Researcher%202048849d03a780929526f2c14a684009.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Researcher</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-default">Captured</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-yellow">Generate Ideas</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@May 31, 2025 9:11 PM</time></td><td class="cell-bL[r"><time>@May 31, 2025 4:32 PM</time></td></tr><tr id="2038849d-03a7-8072-a61b-e35850d82a79"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Interview%20to%20Generate%20Prompts%202038849d03a78072a61be35850d82a79.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Interview to Generate Prompts</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-default">Captured</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-yellow">Generate Ideas</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 22, 2025 3:40 PM</time></td><td class="cell-bL[r"><time>@May 29, 2025 8:31 PM</time></td></tr><tr id="1fe8849d-03a7-80eb-812f-dc5fad383d80"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Relevant%20Stats%20Easy%20Read%20Ban%201fe8849d03a780eb812fdc5fad383d80.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Relevant Stats / Easy Read / Ban</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-default">Captured</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-blue">Copywriting</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@May 27, 2025 9:04 PM</time></td><td class="cell-bL[r"><time>@May 25, 2025 1:57 PM</time></td></tr><tr id="1d58849d-03a7-8009-a89c-d7b548227634"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Decompose%20into%20Sub-Problems%201d58849d03a78009a89cd7b548227634.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Decompose into Sub-Problems</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-default">Captured</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-purple">Business Operations</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 17, 2025 5:30 PM</time></td><td class="cell-bL[r"><time>@April 14, 2025 3:21 PM</time></td></tr><tr id="21a8849d-03a7-80c2-8afa-eba1038e387b"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Unicorn%2021a8849d03a780c28afaeba1038e387b.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Unicorn</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-pink">All</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-purple">Business Operations</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-gray">NotebookLM</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 22, 2025 2:34 PM</time></td><td class="cell-bL[r"><time>@June 22, 2025 2:30 PM</time></td></tr><tr id="2198849d-03a7-80a1-a39b-d02003eb5365"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Micro-Writer%20System%202198849d03a780a1a39bd02003eb5365.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Micro-Writer System</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-pink">All</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-blue">Copywriting</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 22, 2025 3:44 PM</time></td><td class="cell-bL[r"><time>@June 21, 2025 10:57 AM</time></td></tr><tr id="2138849d-03a7-808f-a3eb-e9d0d7d7cd35"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/ChatGPT%20Write%20Naturally%20Disallowed%202138849d03a7808fa3ebe9d0d7d7cd35.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>ChatGPT Write Naturally / Disallowed</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-pink">All</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-blue">Job Search</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 18, 2025 8:25 PM</time></td><td class="cell-bL[r"><time>@June 15, 2025 3:40 PM</time></td></tr><tr id="20e8849d-03a7-809f-80d6-e3f47a2f227f"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Hookwriter%20SM25%20(+Prompting%20Tips)%2020e8849d03a7809f80d6e3f47a2f227f.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Hookwriter SM25 (+Prompting Tips)</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-pink">All</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-blue">Copywriting</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 9, 2025 8:05 PM</time></td><td class="cell-bL[r"><time>@June 9, 2025 8:03 PM</time></td></tr><tr id="2018849d-03a7-800c-8a00-e31050d2442a"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Meta%20Prompts%20(Source%20PDF)%20Update%202018849d03a7800c8a00e31050d2442a.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Meta Prompts  (Source PDF) &gt;Update</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-pink">All</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-green">Data Analysis</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 15, 2025 4:46 PM</time></td><td class="cell-bL[r"><time>@May 27, 2025 9:03 PM</time></td></tr><tr id="1fb8849d-03a7-8084-aec3-f71935c9ef9a"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Interview%20Questions%201fb8849d03a78084aec3f71935c9ef9a.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Interview Questions</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-pink">All</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-blue">Job Search</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@May 30, 2025 3:24 PM</time></td><td class="cell-bL[r"><time>@May 22, 2025 6:41 PM</time></td></tr><tr id="1c08849d-03a7-8097-893d-c7f5dfa6d11f"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/MetaPrompts%20Create%201c08849d03a78097893dc7f5dfa6d11f.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>MetaPrompts  &gt;Create</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-pink">All</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-blue">Copywriting</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 28, 2025 7:57 PM</time></td><td class="cell-bL[r"><time>@March 23, 2025 8:31 PM</time></td></tr><tr id="2208849d-03a7-8034-987f-e7cad9374f1f"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Chain-of-Failure%202208849d03a78034987fe7cad9374f1f.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Chain-of-Failure</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Personal</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-yellow">Generate Ideas</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 28, 2025 7:28 PM</time></td><td class="cell-bL[r"><time>@June 28, 2025 7:28 PM</time></td></tr><tr id="2178849d-03a7-8046-bac0-cd11c55e43ed"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Summarize%20Book%202178849d03a78046bac0cd11c55e43ed.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Summarize Book</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Personal</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-green">Data Analysis</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-purple">Gemini</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 21, 2025 3:51 PM</time></td><td class="cell-bL[r"><time>@June 19, 2025 5:27 AM</time></td></tr><tr id="2178849d-03a7-80cd-a5ce-df5d6de2cce0"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/2030%202178849d03a780cda5cedf5d6de2cce0.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>2030</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Personal</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-blue">Job Search</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 19, 2025 4:47 AM</time></td><td class="cell-bL[r"><time>@June 19, 2025 4:46 AM</time></td></tr><tr id="2128849d-03a7-8012-ace5-f8e203c6cffd"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Text%20Doctor%20(Pro%20Editor)%202128849d03a78012ace5f8e203c6cffd.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Text Doctor (Pro Editor)</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Personal</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-blue">Copywriting</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 14, 2025 4:45 PM</time></td><td class="cell-bL[r"><time>@June 14, 2025 4:45 PM</time></td></tr><tr id="2058849d-03a7-8042-96cf-c4b7d889caed"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Long%20Audio%20Overviews%202058849d03a7804296cfc4b7d889caed.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Long Audio Overviews</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Personal</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-yellow">Generate Ideas</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-orange">Audio</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-gray">NotebookLM</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 7, 2025 7:59 PM</time></td><td class="cell-bL[r"><time>@June 1, 2025 4:48 PM</time></td></tr><tr id="2028849d-03a7-801f-84f9-cfccf11ea0f2"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Undetectable%202028849d03a7801f84f9cfccf11ea0f2.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Undetectable</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Personal</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-blue">Copywriting</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@May 31, 2025 9:57 PM</time></td><td class="cell-bL[r"><time>@May 29, 2025 5:48 AM</time></td></tr><tr id="2028849d-03a7-8005-a8b7-c5ffc796fa30"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Jailbreak%20Custom%20Instructions%202028849d03a78005a8b7c5ffc796fa30.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Jailbreak Custom Instructions </a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Personal</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-green">Data Analysis</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@May 28, 2025 8:32 PM</time></td><td class="cell-bL[r"><time>@May 28, 2025 8:31 PM</time></td></tr><tr id="2018849d-03a7-8071-94c7-fddd6652cd1c"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Badass%20Career%20Change%20Exs%20&amp;%20Beclak%202018849d03a7807194c7fddd6652cd1c.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Badass Career Change Exs &amp; Beclak</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Personal</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-blue">Job Search</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@May 28, 2025 1:51 PM</time></td><td class="cell-bL[r"><time>@May 28, 2025 9:35 AM</time></td></tr><tr id="1fa8849d-03a7-80c1-9549-d8e2c2e1e4a2"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/NotebookLM%20Transcript%20Extraction%201fa8849d03a780c19549d8e2c2e1e4a2.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>NotebookLM Transcript Extraction</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Personal</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-green">Data Analysis</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-purple">Gemini</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 11, 2025 7:15 AM</time></td><td class="cell-bL[r"><time>@May 21, 2025 1:40 PM</time></td></tr><tr id="1f88849d-03a7-80c8-ab02-c5ef494387e8"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Reveal%20Custom%20GPT&#x27;s%20instructions%201f88849d03a780c8ab02c5ef494387e8.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Reveal Custom GPT&#x27;s instructions</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Personal</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-green">Data Analysis</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@May 19, 2025 6:43 PM</time></td><td class="cell-bL[r"><time>@May 19, 2025 6:42 PM</time></td></tr><tr id="1f48849d-03a7-8088-a8f5-ebc9dc24f49a"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Image%20Generation%20Prompts%201f48849d03a78088a8f5ebc9dc24f49a.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Image Generation Prompts</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Personal</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-gray">Social Media</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-purple">Image</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@May 15, 2025 6:03 PM</time></td><td class="cell-bL[r"><time>@May 15, 2025 6:03 PM</time></td></tr><tr id="1e98849d-03a7-805f-a84c-dd4232700483"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Buffett%20Research%20Method%201e98849d03a7805fa84cdd4232700483.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Buffett Research Method</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Personal</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-blue">Job Search</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 21, 2025 1:05 PM</time></td><td class="cell-bL[r"><time>@May 4, 2025 4:22 PM</time></td></tr><tr id="1d58849d-03a7-8015-ab43-c8f6d6e056c6"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Writeprint%20Style%20Analyzer%20Prompt%201d58849d03a78015ab43c8f6d6e056c6.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Writeprint Style Analyzer Prompt</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Personal</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-blue">Copywriting</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@May 25, 2025 2:25 PM</time></td><td class="cell-bL[r"><time>@April 14, 2025 3:28 PM</time></td></tr><tr id="1c78849d-03a7-8060-b6f8-cc31b3318ae1"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/80%25%20Pareto%20Learning%201c78849d03a78060b6f8cc31b3318ae1.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>80% Pareto Learning</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Personal</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-green">Data Analysis</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@May 20, 2025 6:09 PM</time></td><td class="cell-bL[r"><time>@March 31, 2025 9:08 AM</time></td></tr><tr id="1c58849d-03a7-80c2-ab44-c245bbafec6e"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Think%20Before%20You%20Act%20GPT%201c58849d03a780c2ab44c245bbafec6e.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Think Before You Act GPT</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Personal</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-yellow">Generate Ideas</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@March 29, 2025 1:25 PM</time></td><td class="cell-bL[r"><time>@March 29, 2025 1:21 PM</time></td></tr><tr id="1c38849d-03a7-802a-88d2-d5a9ff94be2c"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Ben%20Graham%20Calculator%201c38849d03a7802a88d2d5a9ff94be2c.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Ben Graham Calculator</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Personal</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-green">Data Analysis</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@March 27, 2025 3:27 PM</time></td><td class="cell-bL[r"><time>@March 27, 2025 1:00 PM</time></td></tr><tr id="1c18849d-03a7-8041-ad6c-f1a747e4b24d"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Black%20Magic%20Prompting%201c18849d03a78041ad6cf1a747e4b24d.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Black Magic Prompting</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Personal</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-blue">Copywriting</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@April 3, 2025 10:56 AM</time></td><td class="cell-bL[r"><time>@March 25, 2025 11:37 AM</time></td></tr><tr id="1bb8849d-03a7-80a1-a612-e61dcf59c41d"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/LinkedIn%20About%20Section%20Prompt%201bb8849d03a780a1a612e61dcf59c41d.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>LinkedIn About Section Prompt</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Personal</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-blue">Job Search</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@April 5, 2025 11:43 AM</time></td><td class="cell-bL[r"><time>@March 19, 2025 9:50 AM</time></td></tr><tr id="1ba8849d-03a7-817a-ab66-ddd6160a2eb2"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Refine%20unstructured%20thoughts%201ba8849d03a7817aab66ddd6160a2eb2.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Refine unstructured thoughts</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-green">Personal</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-blue">Copywriting</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 13, 2025 12:10 PM</time></td><td class="cell-bL[r"><time>@March 18, 2025 7:13 PM</time></td></tr><tr id="2198849d-03a7-80b0-98cb-e160440b0918"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/AI%20Agent%20Builder%20(n8n)%202198849d03a780b098cbe160440b0918.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>AI Agent Builder (n8n)</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-purple">My Business</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-purple">Business Operations</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 20, 2025 8:58 PM</time></td><td class="cell-bL[r"><time>@June 20, 2025 8:52 PM</time></td></tr><tr id="2138849d-03a7-80cd-bcc2-dd2f56602010"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Gemini%20Notebook%20Claude%20Artifacts%202138849d03a780cdbcc2dd2f56602010.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Gemini/Notebook &gt; Claude Artifacts</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-purple">My Business</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-purple">Business Operations</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-purple">Image</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-yellow">Claude</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 15, 2025 10:17 AM</time></td><td class="cell-bL[r"><time>@June 15, 2025 10:16 AM</time></td></tr><tr id="2128849d-03a7-808b-8710-fa8b6182c1cb"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Process%20Documentation%20Specialist%202128849d03a7808b8710fa8b6182c1cb.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Process Documentation Specialist</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-purple">My Business</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-green">Data Analysis</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 14, 2025 5:07 PM</time></td><td class="cell-bL[r"><time>@June 14, 2025 5:02 PM</time></td></tr><tr id="2128849d-03a7-8048-ad9b-cde2cb8ab6b3"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Content%20Repurposing%20(1%20Idea%20-%206%20Ideas)%202128849d03a78048ad9bcde2cb8ab6b3.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Content Repurposing (1 Idea -&gt; 6 Ideas)</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-purple">My Business</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-yellow">Generate Ideas</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 14, 2025 4:42 PM</time></td><td class="cell-bL[r"><time>@June 14, 2025 4:41 PM</time></td></tr><tr id="2018849d-03a7-8080-ae96-e10ad440ee7c"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Resume%20Bullets%202018849d03a78080ae96e10ad440ee7c.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Resume Bullets</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-purple">My Business</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-blue">Job Search</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@May 28, 2025 12:56 PM</time></td><td class="cell-bL[r"><time>@May 28, 2025 12:50 PM</time></td></tr><tr id="1fb8849d-03a7-80f5-8aff-f08b1ac9cf3a"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Act%20as%20a%20critical%20reader%201fb8849d03a780f58afff08b1ac9cf3a.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Act as a critical reader</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-purple">My Business</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-green">Data Analysis</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@May 31, 2025 9:57 PM</time></td><td class="cell-bL[r"><time>@May 22, 2025 10:19 AM</time></td></tr><tr id="1f58849d-03a7-80af-bcb4-d87ae04e60d1"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Educ%20Panel%201f58849d03a780afbcb4d87ae04e60d1.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Educ Panel</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-purple">My Business</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-gray">Social Media</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-purple">Image</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 7, 2025 7:59 PM</time></td><td class="cell-bL[r"><time>@May 16, 2025 7:36 PM</time></td></tr><tr id="1ee8849d-03a7-8099-956d-e714d97070cd"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Nelken%20Headline%20Prompt%201ee8849d03a78099956de714d97070cd.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Nelken Headline Prompt</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-purple">My Business</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-gray">Social Media</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@May 8, 2025 8:24 PM</time></td><td class="cell-bL[r"><time>@May 8, 2025 8:24 PM</time></td></tr><tr id="1ca8849d-03a7-8075-8cf2-fa12407e6130"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Minify%20Prompts%201ca8849d03a780758cf2fa12407e6130.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Minify Prompts</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-purple">My Business</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-green">Data Analysis</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@April 14, 2025 3:23 PM</time></td><td class="cell-bL[r"><time>@April 3, 2025 4:35 PM</time></td></tr><tr id="1c78849d-03a7-8072-8c2a-cef788eab90b"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Design%20Helper%20(bot)%201c78849d03a780728c2acef788eab90b.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Design Helper (bot)</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-purple">My Business</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-blue">Copywriting</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-purple">Image</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@March 31, 2025 2:26 PM</time></td><td class="cell-bL[r"><time>@March 31, 2025 2:24 PM</time></td></tr><tr id="1c78849d-03a7-8062-a932-d5785ac84041"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Alternative%20Voice%201c78849d03a78062a932d5785ac84041.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Alternative Voice</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-purple">My Business</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-blue">Copywriting</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@March 31, 2025 8:45 AM</time></td><td class="cell-bL[r"><time>@March 31, 2025 8:44 AM</time></td></tr><tr id="1c68849d-03a7-80f6-baf2-c9a7ccaea9e9"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Logo%20Product%20Landing%20Page%201c68849d03a780f6baf2c9a7ccaea9e9.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Logo &gt; Product &gt; Landing Page</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-purple">My Business</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-purple">Business Operations</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-purple">Image</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@March 30, 2025 10:14 AM</time></td><td class="cell-bL[r"><time>@March 30, 2025 10:12 AM</time></td></tr><tr id="1c58849d-03a7-8072-acaf-efd7cd080f8d"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Jay%20Abraham%20Business%20Mindset%201c58849d03a78072acafefd7cd080f8d.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Jay Abraham Business Mindset</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-purple">My Business</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-yellow">Generate Ideas</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@March 29, 2025 1:19 PM</time></td><td class="cell-bL[r"><time>@March 29, 2025 1:18 PM</time></td></tr><tr id="1c18849d-03a7-809d-a62e-d43d02592cd9"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Empathy%20Map%20Generator%201c18849d03a7809da62ed43d02592cd9.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Empathy Map Generator</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-purple">My Business</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-yellow">Generate Ideas</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@March 31, 2025 10:56 AM</time></td><td class="cell-bL[r"><time>@March 25, 2025 12:20 PM</time></td></tr><tr id="1c18849d-03a7-80a6-9707-dd773bf1c620"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/C%20L%20O%20S%20E%20R%20Bot%20(Poe)%201c18849d03a780a69707dd773bf1c620.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>C.L.O.S.E.R. Bot (Poe)</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-purple">My Business</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-purple">Business Operations</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@April 3, 2025 2:50 PM</time></td><td class="cell-bL[r"><time>@March 25, 2025 12:15 PM</time></td></tr><tr id="1c18849d-03a7-805f-95d3-d1062566523e"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Alex%20Hormozi%20$100M%20Offer%20Generator%201c18849d03a7805f95d3d1062566523e.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Alex Hormozi $100M Offer Generator</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-purple">My Business</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-yellow">Generate Ideas</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@April 3, 2025 2:50 PM</time></td><td class="cell-bL[r"><time>@March 25, 2025 12:01 PM</time></td></tr><tr id="1c18849d-03a7-80f5-986e-d146c2a7d629"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Short%20Form%20AI%20Email%20Ad%20Prompts%201c18849d03a780f5986ed146c2a7d629.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Short Form AI Email/Ad Prompts</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-purple">My Business</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-pink">Email</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@March 25, 2025 10:50 AM</time></td><td class="cell-bL[r"><time>@March 25, 2025 10:41 AM</time></td></tr><tr id="1bb8849d-03a7-8063-b5c1-fb498d37056e"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Write%20a%20Marketing%20Email%201bb8849d03a78063b5c1fb498d37056e.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Write a Marketing Email</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-purple">My Business</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-pink">Email</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@March 21, 2025 12:54 PM</time></td><td class="cell-bL[r"><time>@March 19, 2025 10:37 AM</time></td></tr><tr id="1bb8849d-03a7-8052-89df-f64cf2fe32db"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/LinkedIn%20Headline%20Writer%20Prompt%201bb8849d03a7805289dff64cf2fe32db.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>LinkedIn Headline Writer Prompt</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-purple">My Business</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-blue">Job Search</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@April 5, 2025 11:45 AM</time></td><td class="cell-bL[r"><time>@March 19, 2025 9:48 AM</time></td></tr><tr id="1bb8849d-03a7-8075-9ede-d048658483cd"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Aesop%E2%80%99s%20Storytelling%20Prompt%201bb8849d03a780759eded048658483cd.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Aesop’s Storytelling Prompt</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-purple">My Business</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-yellow">Generate Ideas</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@March 21, 2025 8:59 AM</time></td><td class="cell-bL[r"><time>@March 19, 2025 9:27 AM</time></td></tr><tr id="1ba8849d-03a7-81ed-a77e-fd851b0e268c"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/%5BYT%5D%20Create%20a%20minimalist%20illustration%201ba8849d03a781eda77efd851b0e268c.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>[YT] Create a minimalist illustration </a></td><td class="cell-=RKv"><span class="selected-value select-value-color-purple">My Business</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-gray">Social Media</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-purple">Image</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-gray">Midjourney</span></td><td class="cell-f;P@"><span style="margin-right:6px"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/%5BYT%5D%20Create%20a%20minimalist%20illustration%201ba8849d03a781eda77efd851b0e268c/Jeff_working.png"><img style="width:20px;max-height:24px" src="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/%5BYT%5D%20Create%20a%20minimalist%20illustration%201ba8849d03a781eda77efd851b0e268c/Jeff_working.png" alt="Jeff working.png"/></a></span></td><td class="cell-QrPk"><time>@March 18, 2025 7:13 PM</time></td><td class="cell-bL[r"><time>@March 18, 2025 7:13 PM</time></td></tr><tr id="2048849d-03a7-8063-a06d-c32699e592e5"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Parahelp%20planning%20manager%202048849d03a78063a06dc32699e592e5.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Parahelp planning / manager</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-blue">Workplace</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-purple">Business Operations</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@May 31, 2025 1:52 PM</time></td><td class="cell-bL[r"><time>@May 31, 2025 1:48 PM</time></td></tr><tr id="1ef8849d-03a7-809c-8e0f-c426356ec111"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Search%20Operators%201ef8849d03a7809c8e0fc426356ec111.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Search Operators</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-blue">Workplace</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-green">Data Analysis</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-purple">Gemini</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 17, 2025 5:31 PM</time></td><td class="cell-bL[r"><time>@May 10, 2025 12:38 PM</time></td></tr><tr id="1ee8849d-03a7-802a-9ab4-c556aa5de3e3"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Research%20Agent%201ee8849d03a7802a9ab4c556aa5de3e3.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Research Agent</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-blue">Workplace</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-yellow">Generate Ideas</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-yellow">Claude</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@May 28, 2025 12:54 PM</time></td><td class="cell-bL[r"><time>@May 9, 2025 2:21 PM</time></td></tr><tr id="1ed8849d-03a7-80e3-afd6-c9c7e013d891"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Create%20Professional%20Charts%20with%20Claude%201ed8849d03a780e3afd6c9c7e013d891.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Create Professional Charts with Claude</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-blue">Workplace</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-green">Data Analysis</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-purple">Image</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-yellow">Claude</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@May 28, 2025 12:53 PM</time></td><td class="cell-bL[r"><time>@May 8, 2025 7:02 PM</time></td></tr><tr id="1ed8849d-03a7-80bb-8f64-cea14d81de84"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Task%20Code%20Format%201ed8849d03a780bb8f64cea14d81de84.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Task Code Format</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-blue">Workplace</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-purple">Business Operations</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@May 28, 2025 12:53 PM</time></td><td class="cell-bL[r"><time>@May 8, 2025 6:31 PM</time></td></tr><tr id="1ca8849d-03a7-8085-b339-d81bdae46a36"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Bank%20Statement%20Analysis%201ca8849d03a78085b339d81bdae46a36.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Bank Statement Analysis</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-blue">Workplace</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-green">Data Analysis</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@April 3, 2025 2:46 PM</time></td><td class="cell-bL[r"><time>@April 3, 2025 2:45 PM</time></td></tr><tr id="1c78849d-03a7-8023-8214-e2a3a2329413"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/AI-Powered%20Lead%20Magnets%201c78849d03a780238214e2a3a2329413.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>AI-Powered Lead Magnets</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-blue">Workplace</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-yellow">Generate Ideas</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-purple">Image</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@March 31, 2025 2:58 PM</time></td><td class="cell-bL[r"><time>@March 31, 2025 2:57 PM</time></td></tr><tr id="1c68849d-03a7-8032-97f3-eff734ecb634"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Infographic%20Creation%201c68849d03a7803297f3eff734ecb634.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Infographic Creation</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-blue">Workplace</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-purple">Business Operations</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-purple">Image</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@April 2, 2025 3:05 PM</time></td><td class="cell-bL[r"><time>@March 30, 2025 10:14 AM</time></td></tr><tr id="1c48849d-03a7-802d-9258-e92a26af39b7"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Adopt%20Persona%201c48849d03a7802d9258e92a26af39b7.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Adopt Persona</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-blue">Workplace</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-pink">Email</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@March 28, 2025 2:37 PM</time></td><td class="cell-bL[r"><time>@March 28, 2025 1:19 PM</time></td></tr><tr id="1c48849d-03a7-80b4-8811-d3fe730263f4"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Socratic%20Tutor%201c48849d03a780b48811d3fe730263f4.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Socratic Tutor</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-blue">Workplace</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-yellow">Generate Ideas</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@March 28, 2025 4:04 PM</time></td><td class="cell-bL[r"><time>@March 28, 2025 1:11 PM</time></td></tr><tr id="1c18849d-03a7-80c9-93a3-f1ff38202807"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Transform%20a%20Doc%20to%20TXT%201c18849d03a780c993a3f1ff38202807.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Transform a Doc to .TXT</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-blue">Workplace</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-green">Data Analysis</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@March 25, 2025 12:00 PM</time></td><td class="cell-bL[r"><time>@March 25, 2025 12:00 PM</time></td></tr><tr id="1c08849d-03a7-80bd-a3ac-cb27e64b27d8"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Whimsical%20Diagrams%201c08849d03a780bda3accb27e64b27d8.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Whimsical Diagrams</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-blue">Workplace</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-green">Data Analysis</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-purple">Image</span></td><td class="cell-Xdkn"><span class="selected-value select-value-color-orange">GPT</span></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@April 14, 2025 3:23 PM</time></td><td class="cell-bL[r"><time>@March 24, 2025 4:45 PM</time></td></tr><tr id="1bc8849d-03a7-808d-9a97-ea584ddb8e00"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Dakota%20Content%20Interview%20Flow%201bc8849d03a7808d9a97ea584ddb8e00.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Dakota: Content Interview Flow</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-blue">Workplace</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-pink">Email</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@March 31, 2025 4:35 PM</time></td><td class="cell-bL[r"><time>@March 20, 2025 9:04 AM</time></td></tr><tr id="1bb8849d-03a7-802e-881b-e0f349192a83"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/The%20Edison%20Prompt%201bb8849d03a7802e881be0f349192a83.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>The Edison Prompt</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-blue">Workplace</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-gray">Social Media</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@March 31, 2025 4:35 PM</time></td><td class="cell-bL[r"><time>@March 19, 2025 6:23 AM</time></td></tr><tr id="1ba8849d-03a7-8182-87a2-fdbc7f330ea4"><td class="cell-title"><a href="%5BYT%5D%20Prompts%20DB%20(database%20only)%201ba8849d03a78191a813ee25e5fd6387/Prioritize%20unorthodox%20advice%201ba8849d03a7818287a2fdbc7f330ea4.html"><img class="icon" src="https://www.notion.so/icons/new-document_gray.svg"/>Prioritize unorthodox advice</a></td><td class="cell-=RKv"><span class="selected-value select-value-color-blue">Workplace</span></td><td class="cell-RX[D"><span class="selected-value select-value-color-yellow">Generate Ideas</span></td><td class="cell-Pj&lt;T"><span class="selected-value select-value-color-green">Text</span></td><td class="cell-Xdkn"></td><td class="cell-f;P@"></td><td class="cell-QrPk"><time>@June 17, 2025 5:31 PM</time></td><td class="cell-bL[r"><time>@March 18, 2025 7:13 PM</time></td></tr></tbody></table><br/><br/></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
